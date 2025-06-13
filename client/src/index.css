@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'tailwindcss';
+
+.Navfont {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+ 
+  font-style: normal;
+}
+body,html{
+  margin:0;
+  padding: 0;
+  scroll-behavior: smooth;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+.heoic{
+  background:url('/heroic/VEGGIEbg.png');
+}
+/* Custom scrollbar styling */
+body::-webkit-scrollbar {
+  width: 14px;
+  background: transparent;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #7fff00 0%, #32cd32 100%);
+  border-radius: 8px;
+  border: 2px solid #f0fff0;
+}
+.sides::after{
+width: 1000px;
+height: 100px;
+background-color: #3c32cd;
+z-index: 100;
+content: 'click';
+position: absolute;
+top: 400px;
+}
+
+.carcollection::-webkit-scrollbar{
+display: none;
+}

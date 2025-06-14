@@ -45,26 +45,19 @@ router.post('/login',async (req,res)=>{
   try{
     const user = await Usermodel.findOne({Email:Email})
     if(user){
-      const result =await bcrypt.compare(Password,user.Password);
-     
+      const result = await bcrypt.compare(Password,user.Password);
       if(result){
-       
+        res.clearCookie('token');
         const token = jwt.sign(Email,process.env.JWT_SECRET)
-      const s=  res.cookie('token',token,{
-       httpOnly: true,
-    secure: true,          // Required if using HTTPS
-      sameSite: 'none'       // Required for cross-origin cookies
-      });
-       
+        res.cookie('token',token, cookieOptions);
         res.status(200).json({login:true});
       }
       else{
         res.status(500).json({message:'Invalid Password'});
       }
+      res.status(404).json({message:'No user exist'});
     }
-    else{res.status(404).json({message:'No user exist'})};
   }catch(err){
-    
     res.status(400).json({err:err.message})
   }
 })
@@ -81,11 +74,7 @@ router.post('/signin', async (req, res) => {
       const hashedpswd = await bcrypt.hash(Password, salt);
       const usercreated = await Usermodel.create({ Email, Name, Password: hashedpswd });
       const token = jwt.sign(Email, process.env.JWT_SECRET);
-      res.cookie('token', token,{
-        httpOnly: true,
-  secure: true,        
-  sameSite: false      // Required for cross-origin cookies
-      });
+      res.cookie('token', token, cookieOptions);
       res.status(200).json({ created: true });
     }
   } catch (err) {
@@ -128,4 +117,12 @@ return res.status(200).json({datafecth});
   res.status(400).json({message:err.message});
 }
 })
+
+// When setting cookies, use these options for cross-site support
+const cookieOptions = {
+  httpOnly: true,
+  secure: true,      // required for cross-site cookies
+  sameSite: 'none'   // required for cross-site cookies
+};
+
 module.exports = router;

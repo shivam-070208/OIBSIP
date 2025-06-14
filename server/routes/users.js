@@ -118,7 +118,7 @@ return res.status(200).json({datafecth});
 }
 })
 
-// When setting cookies, use these options for cross-site support
+// Define cookieOptions for cross-site cookies
 const cookieOptions = {
   httpOnly: true,
   secure: true,      // required for cross-site cookies

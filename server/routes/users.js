@@ -52,8 +52,8 @@ router.post('/login',async (req,res)=>{
         const token = jwt.sign(Email,process.env.JWT_SECRET)
       const s=  res.cookie('token',token,{
        httpOnly: true,
-  secure: true,          // Required if using HTTPS
-  sameSite: 'None'       // Required for cross-origin cookies
+    secure: true,          // Required if using HTTPS
+      sameSite: 'none'       // Required for cross-origin cookies
       });
         console.log(s)
         res.status(200).json({login:true});
@@ -64,6 +64,7 @@ router.post('/login',async (req,res)=>{
     }
     else{res.status(404).json({message:'No user exist'})};
   }catch(err){
+    
     res.status(400).json({err:err.message})
   }
 })

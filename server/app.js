@@ -11,9 +11,14 @@ const cartRoute = require('./routes/Cart')
 
 var app = express();
 const connectDB = require('./config/Connectdb')
-
+const allowedOrigins=[
+  'http://localhost:5173'
+]
 app.use(cors({
-  origin:'*'
+  origin:(origin,cb){
+    if(allowedOrigins.includes(origin)) cb(null,true)
+      else cb(new Error('Cors not allowed for this origin: '+origin))
+  }
 }))
 connectDB()
 

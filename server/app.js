@@ -20,7 +20,7 @@ app.use(session({
   cookie: {
    
     secure: true, // set to true if using HTTPS
-    sameSite: none, // or 'none' if using HTTPS and cross-site
+    sameSite: 'none', // or 'none' if using HTTPS and cross-site
     maxAge: 1000 * 60 * 60 * 30 // 1 day
   }
 }));

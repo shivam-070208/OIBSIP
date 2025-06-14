@@ -83,7 +83,7 @@ router.post('/signin', async (req, res) => {
       const token = jwt.sign(Email, process.env.JWT_SECRET);
       res.cookie('token', token,{
         httpOnly: true,
-  secure: true,          // Required if using HTTPS
+  secure: true,        
   sameSite: false      // Required for cross-origin cookies
       });
       res.status(200).json({ created: true });

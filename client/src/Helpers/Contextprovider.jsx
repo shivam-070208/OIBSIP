@@ -31,6 +31,7 @@ export const Contextprovider = ({children})=>{
            
     }
      useEffect(()=>{
+        console.log('fff')
         fetchUser()
      },[])      
      return(

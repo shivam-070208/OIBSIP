@@ -55,7 +55,7 @@ router.post('/login',async (req,res)=>{
     secure: true,          // Required if using HTTPS
       sameSite: 'none'       // Required for cross-origin cookies
       });
-        console.log(s)
+       
         res.status(200).json({login:true});
       }
       else{
@@ -84,7 +84,7 @@ router.post('/signin', async (req, res) => {
       res.cookie('token', token,{
         httpOnly: true,
   secure: true,          // Required if using HTTPS
-  sameSite: 'None'       // Required for cross-origin cookies
+  sameSite: false      // Required for cross-origin cookies
       });
       res.status(200).json({ created: true });
     }

@@ -22,6 +22,7 @@ const Login = () => {
         credentials:'include'
       });
       const data = await res.json();
+          console.log(data)
       if (res.ok && data.login) {
         setMessage('Login successful!');
         // Optionally redirect or update app state here

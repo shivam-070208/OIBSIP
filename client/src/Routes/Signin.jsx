@@ -63,7 +63,7 @@ const Signin = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ Email: form.Email, otp: otp.join('') }),
-        credentials:true
+        
       });
       const data = await res.json();
       if (res.ok && data.verified) {
@@ -91,12 +91,14 @@ const Signin = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
+        credentials:'include'
       });
       const data = await res.json();
+  
       if (res.ok && data.created) {
         setMessage('Registration successful!');
       } else {
-        setMessage(data.message || 'Registration failed.');
+        setMessage(data.message||data.err || 'Registration failed.');
       }
     } catch (err) {
       setMessage('Error: ' + err.message);

@@ -50,7 +50,11 @@ router.post('/login',async (req,res)=>{
       if(result){
        
         const token = jwt.sign(Email,process.env.JWT_SECRET)
-      const s=  res.cookie('token',token);
+      const s=  res.cookie('token',token,{
+       httpOnly: true,
+  secure: true,          // Required if using HTTPS
+  sameSite: 'None'       // Required for cross-origin cookies
+      });
         console.log(s)
         res.status(200).json({login:true});
       }
@@ -76,7 +80,11 @@ router.post('/signin', async (req, res) => {
       const hashedpswd = await bcrypt.hash(Password, salt);
       const usercreated = await Usermodel.create({ Email, Name, Password: hashedpswd });
       const token = jwt.sign(Email, process.env.JWT_SECRET);
-      res.cookie('token', token);
+      res.cookie('token', token,{
+        httpOnly: true,
+  secure: true,          // Required if using HTTPS
+  sameSite: 'None'       // Required for cross-origin cookies
+      });
       res.status(200).json({ created: true });
     }
   } catch (err) {

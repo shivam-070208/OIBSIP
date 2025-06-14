@@ -50,10 +50,10 @@ router.post('/login',async (req,res)=>{
         res.clearCookie('token');
         const token = jwt.sign(Email,process.env.JWT_SECRET)
         res.cookie('token',token, cookieOptions);
-        res.status(200).json({login:true,user:user});
+      return  res.status(200).json({login:true,user:user});
       }
       else{
-        res.status(500).json({message:'Invalid Password'});
+       return res.status(500).json({message:'Invalid Password'});
       }
       res.status(404).json({message:'No user exist'});
     }

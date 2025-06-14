@@ -15,7 +15,7 @@ const allowedOrigins=[
   'http://localhost:5173'
 ]
 app.use(cors({
-  origin:(origin,cb){
+  origin:(origin,cb)=>{
     if(allowedOrigins.includes(origin)) cb(null,true)
       else cb(new Error('Cors not allowed for this origin: '+origin))
   }

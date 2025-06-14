@@ -38,7 +38,7 @@ const Dealavailable = () => (
           <p className="text-lg text-white/90 mb-4 text-center">{deal.desc}</p>
           <span className="text-2xl font-extrabold text-yellow-100 mb-2">{deal.price}</span>
           <div className="flex items-center gap-2 mb-4">
-            <span className="bg-white/80 text-pink-600 font-bold px-4 py-1 rounded-full text-lg tracking-widest">{deal.code}</span>
+            <span className="bg-white/80 text-pink-600 font-bold px-4 py-1 rounded-full text-lg tracking-widest cursor-pointer" onClick={()=>navigator.clipboard.writeText(deal.code)}>{deal.code}</span>
             <button className="ml-2 px-6 py-2 bg-gradient-to-r from-yellow-400 to-red-400 text-white font-bold rounded-full shadow-lg hover:scale-110 transition-transform duration-200">Order Now</button>
           </div>
           <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-white/20 rounded-full blur-2xl animate-pulse"></div>

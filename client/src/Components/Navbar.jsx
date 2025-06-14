@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Brand } from '../Helpers'
 import { gsap } from 'gsap'
 import { Link } from 'react-router'
+import { useEffect } from 'react'
 
 const navItems = ['Deals','Pizzas','Papajohns','Drinks','User']
 
@@ -11,6 +12,9 @@ const Navbar = () => {
     const topBar = useRef(null)
     const midBar = useRef(null)
     const botBar = useRef(null)
+    useEffect(()=>{
+
+    })
 
     const handleMenuClick = () => {
         setOpen(prev => {
@@ -76,13 +80,13 @@ const Navbar = () => {
                     (i === 2) ? (
                         <Brand key={elm} elm={elm} />
                     ) : (
-                        <span
+                        <Link to={`/${elm}`}
                             className='font-semibold text-2xl text-[#ffffff] hover:text-blue-600 transition-all cursor-pointer'
                             key={elm}
                             onClick={handleNavClick}
                         >
                             {elm}
-                        </span>
+                        </Link>
                     )
                 )}
             </div>

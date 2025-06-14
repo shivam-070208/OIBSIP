@@ -45,7 +45,9 @@ router.post('/fetchorder', async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
-
+router.get('/',(req,res)=>{
+  res.send('hello')
+})
 router.post('/updateorder', async (req, res) => {
   const { orderid, status } = req.body;
   try {

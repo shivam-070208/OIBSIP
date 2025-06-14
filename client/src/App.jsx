@@ -20,12 +20,13 @@ const App = () => {
         <Route path='/deals' element={<Deals />} />
          <Route path='/pizzas' element={<Pizzas />} />
          <Route path='/Drinks' element={<Drinks/>} />
+         <Route path='/Users' element={<Drinks/>} />
       </Routes>
       <div className='w-screen h-screen fixed flex top-0 pointer-events-none z-[100]'>
-        {Array(6).fill().map((_, i) => (
+        {Array(window.innerWidth<500?3:6).fill().map((_, i) => (
           <div
             key={i}
-            className={`w-1/6 loader border-r-1 translate-y-[-100%] h-screen ${loaderColors[i]} pointer-events-auto z-100`}
+            className={`md:w-1/6 w-1/3 loader border-r-1 translate-y-[-100%] h-screen ${loaderColors[i]} pointer-events-auto z-100`}
           ></div>
         ))}
       </div>

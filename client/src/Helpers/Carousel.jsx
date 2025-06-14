@@ -43,7 +43,7 @@ const Carousel = () => {
         setCurrent((current + 1) % pizzaSlides.length)
     }
     return (
-        <div className="w-screen min-h-[90vh] flex flex-col items-center justify-center relative overflow-hidden ">
+        <div className="w-screen md:h-[90vh] h-[60vh] flex flex-col items-center justify-center relative overflow-hidden ">
             <div className="absolute w-screen h-full overflow-hidden z-0">
                 <div
                     className="flex transition-transform duration-900 ease-in-out h-full"

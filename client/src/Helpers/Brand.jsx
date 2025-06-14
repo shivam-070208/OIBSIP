@@ -15,7 +15,7 @@ const Brand = ({elm}) => {
             duration:0.2,
             stagger:{
                 from:'random',
-                amount:0.3
+                amount:0.4
             }
         })
     }
@@ -24,7 +24,7 @@ const Brand = ({elm}) => {
    
     <span onMouseEnter={hover} onClick={()=>{
         window.location.pathname ='/'
-    }} className="transform-3d overflow-hidden h-fit perspective-[3000px] ">
+    }} className=" overflow-hidden h-fit perspective-[3000px] ">
         {elm.split('').map((e, i) => (
             <span
                 key={i} 

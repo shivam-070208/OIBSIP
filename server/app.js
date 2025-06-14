@@ -11,6 +11,19 @@ const cartRoute = require('./routes/Cart')
 
 var app = express();
 const connectDB = require('./config/Connectdb')
+const session = require('express-session');
+
+app.use(session({
+  secret: 'yourSecretKey', 
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+   
+    secure: true, // set to true if using HTTPS
+    sameSite: none, // or 'none' if using HTTPS and cross-site
+    maxAge: 1000 * 60 * 60 * 30 // 1 day
+  }
+}));
 const allowedOrigins=[
   'http://localhost:5173'
 ]

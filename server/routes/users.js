@@ -51,6 +51,7 @@ router.post('/login',async (req,res)=>{
        
         const token = jwt.sign(Email,process.env.JWT_SECRET)
         res.cookie('token',token);
+        console.log(token)
         res.status(200).json({login:true});
       }
       else{

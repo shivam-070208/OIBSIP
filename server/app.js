@@ -18,7 +18,8 @@ app.use(cors({
   origin:(origin,cb)=>{
     if(!origin||allowedOrigins.includes(origin)) cb(null,true)
       else cb(new Error('Cors not allowed for this origin: '+origin))
-  }
+  },
+  credentials:true
 }))
 connectDB()
 

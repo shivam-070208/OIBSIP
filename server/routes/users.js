@@ -129,7 +129,7 @@ function getCookieOptions(req) {
     console.log('hello')
     return {
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: 'none',
       maxAge: 24 * 60 * 60 * 1000*24 // 1 day (optional)
 //     };

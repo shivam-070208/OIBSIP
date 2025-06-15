@@ -32,11 +32,11 @@ const User = () => {
       <Navbar />
       {/* Secondary Navbar */}
       <div className="w-full flex justify-center bg-white/80 shadow-md py-3 sticky top-20 z-40">
-        <div className="flex gap-8">
+        <div className="flex gap-6">
           {navOptions.map(opt => (
             <button
               key={opt.label}
-              className="flex items-center gap-2 px-6 py-2 rounded-full font-bold text-lg text-yellow-700 bg-yellow-100 hover:bg-yellow-300 shadow transition-all duration-200"
+              className="flex items-center gap-1 px-4 py-2 rounded-full font-bold text-md text-yellow-700 bg-yellow-100 hover:bg-yellow-300 shadow transition-all duration-200"
             >
               <span>{opt.icon}</span> {opt.label}
             </button>

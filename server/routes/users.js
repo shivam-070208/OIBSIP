@@ -125,22 +125,24 @@ const isLocalhost = (host) => host && (host.startsWith('localhost') || host.star
 
 function getCookieOptions(req) {
   const host = req.headers.origin || req.headers.host;
-  if (isLocalhost(host)) {
+  
     console.log('hello')
     return {
       httpOnly: true,
       secure: false,
       sameSite: 'lax',
       maxAge: 24 * 60 * 60 * 1000*24 // 1 day (optional)
-    };
-  } else {
-    return {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'none',
-      maxAge: 24 * 60 * 60 * 1000*24 // 1 day (optional)
-    };
+//     };
+//   } else {
+//     return {
+//       httpOnly: true,
+//       secure: true,
+//       sameSite: 'none',
+//       maxAge: 24 * 60 * 60 * 1000*24 // 1 day (optional)
+//     };
+//   }
+
+    }
   }
-}
 
 module.exports = router;

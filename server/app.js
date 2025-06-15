@@ -14,7 +14,8 @@ const connectDB = require('./config/Connectdb')
 
 const allowedOrigins=[
   'http://localhost:5173',
-  'https://pizzasellingweb.vercel.app'
+  'https://pizzasellingweb.vercel.app',
+  'https://pizzasellingweb-2.onrender.com'
 ]
 app.use(cors({
   origin:(origin,cb)=>{

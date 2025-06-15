@@ -13,7 +13,8 @@ var app = express();
 const connectDB = require('./config/Connectdb')
 
 const allowedOrigins=[
-  'http://localhost:5173'
+  'http://localhost:5173',
+  'https://pizzasellingweb.vercel.app'
 ]
 app.use(cors({
   origin:(origin,cb)=>{

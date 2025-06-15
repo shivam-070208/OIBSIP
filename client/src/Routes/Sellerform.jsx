@@ -10,7 +10,7 @@ const Sellerform = () => {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
-  const {suser} = useContextValues()
+  const {suser,host} = useContextValues()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
@@ -20,7 +20,7 @@ const Sellerform = () => {
     setSuccess(false)
     try {
       const res = await axios.post(
-        'https://pizzasellingweb.onrender.com/hostuser/create-to-seller',
+        `${host}/hostuser/create-to-seller`,
         { Organisation: organisation, Address: address },
         { withCredentials: true }
       )

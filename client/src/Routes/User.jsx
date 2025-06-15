@@ -4,16 +4,12 @@ import { useContextValues } from '../Helpers/Contextprovider'
 const User = () => {
   const { user } = useContextValues()
 
-  if (!user) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh] bg-gradient-to-br from-yellow-100 via-pink-100 to-red-100">
-        <div className="text-2xl text-gray-500 animate-pulse">Loading user info...</div>
-      </div>
-    )
-  }
+  
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-yellow-100 via-pink-100 to-red-100 py-16">
+  <  div>
+
+   {user && <div className="min-h-screen w-full flex bg-black items-center justify-center bg-gradient-to-br from-yellow-100 via-pink-100 to-red-100 py-16">
       <div className="relative max-w-2xl w-full bg-white/90 rounded-3xl shadow-2xl p-10 flex flex-col items-center border-4 border-yellow-200 overflow-hidden">
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-[url('/heroic/veggie.png')] bg-contain bg-no-repeat opacity-10 animate-spin-slow"></div>
         <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[url('/heroic/italian.png')] bg-contain bg-no-repeat opacity-10 animate-spin-slow-reverse"></div>
@@ -60,6 +56,8 @@ const User = () => {
         @keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
         .animate-bounce-slow { animation: bounce 2.5s infinite; }
       `}</style>
+    </div>
+      }
     </div>
   )
 }

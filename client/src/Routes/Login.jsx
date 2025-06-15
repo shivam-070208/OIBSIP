@@ -20,9 +20,9 @@ const Login = () => {
     try {
       const res = await fetch('https://pizzasellingweb.onrender.com/users/login', {
         method: 'POST',
+        credentials:'include',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-        credentials:'include'
+        body: JSON.stringify(form)
       });
       const data = await res.json();
           console.log(data)

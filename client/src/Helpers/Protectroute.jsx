@@ -6,6 +6,7 @@ const Protectroute = ({children}) => {
     const { user } = useContextValues()
       const navigate = useNavigate()
      useEffect(() => {
+      console.log(user +"nfnffj")
         if (!user && window.location.pathname === '/User') {
           navigate('/signup')
         }

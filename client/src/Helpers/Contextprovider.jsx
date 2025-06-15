@@ -17,7 +17,9 @@ export const Contextprovider = ({children})=>{
         axios.post('https://pizzasellingweb.onrender.com/users/fetchuser',
                { withCredentials: true })
             .then((response)=>{
+                console.log(response)
                    if(response.status(200)){
+                    console.log(response.data)
                         suser(response.data.User);
                       
                    } else{

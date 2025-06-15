@@ -130,7 +130,7 @@ function getCookieOptions(req) {
     return {
       httpOnly: true,
       secure: false,
-      sameSite: 'lax',
+      sameSite: 'none',
       maxAge: 24 * 60 * 60 * 1000*24 // 1 day (optional)
 //     };
 //   } else {

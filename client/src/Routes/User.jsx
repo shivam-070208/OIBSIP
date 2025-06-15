@@ -45,7 +45,7 @@ const User = () => {
       </div>
       {/* User Card */}
       <div className="flex items-center justify-center pt-32">
-        <div className="relative max-w-2xl w-full bg-white/95 rounded-3xl shadow-2xl md:p-12 p-7 flex flex-col items-center border-4 border-yellow-300 overflow-hidden">
+        <div className="relative max-w-2xl w-full bg-white/95 rounded-3xl shadow-2xl md:p-12 p-3 flex flex-col items-center border-4 border-yellow-300 overflow-hidden">
           <div className="absolute -top-12 -left-12 w-48 h-48 bg-[url('/heroic/veggie.png')] bg-contain bg-no-repeat opacity-10 animate-spin-slow"></div>
           <div className="absolute -bottom-12 -right-12 md:w-48 md:h-48 w-44 h-44 bg-[url('/heroic/italian.png')] bg-contain bg-no-repeat opacity-10 animate-spin-slow-reverse"></div>
           {User.image ? (

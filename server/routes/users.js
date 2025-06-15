@@ -99,16 +99,17 @@ router.post('/verify-otp', (req, res) => {
 router.post('/fetchuser',async (req,res)=>{
   console.log('request received')
   try{
-    const token = req.signedCookies.token;
-    console.log(token)
+    const token = req.cookies.token;
+  
     if(!token) return res.status(401).json({User:false})
     const Email = jwt.verify(token,process.env.JWT_SECRET);
-  console.log(Email)
+ 
     const User = await Usermodel.findOne({Email});
-    console.log(User)
+    
      if(!User) return res.status(401).json({User:false})
     res.status(200).json({User})
   }catch(err){
+    console.log(err)
       return res.status(500).json({message:err.message})
   }
 })
@@ -131,7 +132,7 @@ function getCookieOptions(req) {
   if (isLocal) {
     return {
       httpOnly: true,
-      secure: false, // ✅ no HTTPS on localhost
+      secure: false,
       sameSite: 'Lax', // ✅ 'None' is invalid without secure
       maxAge: 24 * 60 * 60 * 1000, // 1 day,
       path:'/'

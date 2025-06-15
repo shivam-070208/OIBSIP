@@ -10,35 +10,29 @@ export const useContextValues =()=>{
 export const Contextprovider = ({children})=>{
   
     const [user,suser]=useState(null)
-    const fetchUser=()=>{
+    const [childrenshow,schildren]=useState(false)
+    const host="http://localhost:3000"
+    const fetchUser=async ()=>{
        
 
-       
-        axios.post('https://pizzasellingweb.onrender.com/users/fetchuser',
-               { withCredentials: true })
-            .then((response)=>{
-                console.log(response)
-                   if(response.status(200)){
-                    console.log(response.data)
-                        suser(response.data.User);
-                      
-                   } else{
-                  
-                    console.log(response.data.message)
-                   }
-            }).catch((err)=>{
-                console.log('err',err.message)
-            })
-        
-           
+       try{
+     const response = await axios.post(`${host}/users/fetchuser`, {}, { withCredentials: true })
+         if(response.status == 200){
+            suser(response.data.User);
+
+         }
+       }catch(err){
+        console.log(err)
+       } 
+       schildren(true)
     }
-     useEffect(()=>{
-        console.log('fff')
+     useEffect( ()=>{
+       
         fetchUser()
      },[])      
      return(
-        <Usercontext.Provider value={{user,suser}}>
-            {children}
+        <Usercontext.Provider value={{user,suser,host}}>
+            {childrenshow&&children}
         </Usercontext.Provider>
      ) 
 }

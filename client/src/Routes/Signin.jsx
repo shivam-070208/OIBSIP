@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { useContextValues } from '../Helpers/Contextprovider';
 
 const Signin = () => {
-  const suser = useContextValues().suser
+  const {suser,host} = useContextValues()
   const navigate = useNavigate()
   const [form, setForm] = useState({ Email: '', Name: '', Password: '' });
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -40,7 +40,7 @@ const Signin = () => {
     setVerifying(true);
     setMessage('');
     try {
-      const res = await fetch('https://pizzasellingweb.onrender.com/users/genotp', {
+      const res = await fetch(`${host}/users/genotp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ Email: form.Email }),
@@ -62,7 +62,7 @@ const Signin = () => {
     setVerifying(true);
     setMessage('');
     try {
-      const res = await fetch('https://pizzasellingweb.onrender.com/users/verify-otp', {
+      const res = await fetch(`${host}/users/verify-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ Email: form.Email, otp: otp.join('') }),
@@ -90,7 +90,7 @@ const Signin = () => {
     setLoading(true);
     setMessage('');
     try {
-      const res = await fetch('https://pizzasellingweb.onrender.com/users/signin', {
+      const res = await fetch(`${host}/users/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

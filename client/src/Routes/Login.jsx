@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { useContextValues } from '../Helpers/Contextprovider';
 
 const Login = () => {
-   const suser = useContextValues().suser
+   const {suser,host} = useContextValues()
    const navigate = useNavigate()
   const [form, setForm] = useState({ Email: '', Password: '' });
   const [message, setMessage] = useState('');
@@ -18,7 +18,7 @@ const Login = () => {
     setLoading(true);
     setMessage('');
     try {
-      const res = await fetch('https://pizzasellingweb.onrender.com/users/login', {
+      const res = await fetch(`${host}/users/login`, {
         method: 'POST',
         credentials:'include',
         headers: { 'Content-Type': 'application/json' },

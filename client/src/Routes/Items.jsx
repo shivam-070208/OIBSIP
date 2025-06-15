@@ -20,7 +20,9 @@ const Items = () => {
     const fetchitems = async ()=>{
       try{
 
-        const response = await axios.post(`${host}/host/fetchitems`)
+        const response = await axios.post(`${host}/host/fetchitems`,{},{
+          withCredentials:true
+        })
         console.log(response)
         if(response.status == 200){
           sitems(response.data)

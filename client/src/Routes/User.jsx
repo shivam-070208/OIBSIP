@@ -45,31 +45,29 @@ const User = () => {
       </div>
       {/* User Card */}
       <div className="flex items-center justify-center pt-32">
-        <div className="relative max-w-2xl w-full bg-white/95 rounded-3xl shadow-2xl p-12 flex flex-col items-center border-4 border-yellow-300 overflow-hidden">
+        <div className="relative max-w-2xl w-full bg-white/95 rounded-3xl shadow-2xl md:p-12 p-7 flex flex-col items-center border-4 border-yellow-300 overflow-hidden">
           <div className="absolute -top-12 -left-12 w-48 h-48 bg-[url('/heroic/veggie.png')] bg-contain bg-no-repeat opacity-10 animate-spin-slow"></div>
-          <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-[url('/heroic/italian.png')] bg-contain bg-no-repeat opacity-10 animate-spin-slow-reverse"></div>
+          <div className="absolute -bottom-12 -right-12 md:w-48 md:h-48 w-44 h-44 bg-[url('/heroic/italian.png')] bg-contain bg-no-repeat opacity-10 animate-spin-slow-reverse"></div>
           {User.image ? (
             <img
               src={User.image}
               alt="User avatar"
-              className="w-32 h-32 rounded-full mb-4 border-4 border-pink-400 shadow-xl object-cover bg-yellow-100"
+              className="md:w-32 md:h-32 w-29 h-29 cursor-pointer rounded-full mb-4 border-4 border-pink-400 shadow-xl object-cover bg-yellow-100"
             />
           ) : (
             <img
               src={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(User.Email)}`}
               alt="avatar"
-              className="w-32 h-32 rounded-full mb-4 border-4 border-yellow-400 shadow-xl bg-yellow-100"
+              className="md:w-32 md:h-32 w-29 h-29 cursor-pointer rounded-full mb-4 border-4 border-yellow-400 shadow-xl bg-yellow-100"
             />
           )}
-          <h2 className="text-4xl font-extrabold text-yellow-700 mb-1 tracking-widest drop-shadow-lg text-center animate-pulse">
+          <h2 className="md:text-4xl text-2xl  font-extrabold text-yellow-700 mb-1 tracking-widest drop-shadow-lg text-center animate-pulse">
             {User.Name}
           </h2>
           <div className="text-lg text-gray-700 mb-2 text-center">
             <span className="font-semibold">Email:</span> {User.Email}
           </div>
-          <div className="text-lg text-gray-700 mb-2 text-center">
-            <span className="font-semibold">Role:</span> <span className="uppercase text-pink-500 font-bold">{User.role}</span>
-          </div>
+          
           {User.role === 'Seller' && (
             <>
               <div className="text-lg text-gray-700 mb-2 text-center">
@@ -78,7 +76,7 @@ const User = () => {
               <div className="text-lg text-gray-700 mb-2 text-center">
                 <span className="font-semibold">Address:</span> {User.Address || <span className="italic text-gray-400">N/A</span>}
               </div>
-              <div className="mt-6 px-8 py-3 bg-gradient-to-r from-green-400 to-yellow-400 text-white text-xl font-bold rounded-full shadow-lg cursor-default animate-bounce-slow">
+              <div className="mt-6 px-8 py-3 bg-gradient-to-r cursor-pointer from-green-400 to-yellow-400 text-white text-xl font-bold rounded-full shadow-lg  animate-bounce-slow">
                 Seller Dashboard
               </div>
             </>
@@ -86,7 +84,7 @@ const User = () => {
           {User.role !== 'Seller' && (
             <div className="w-full flex flex-col items-center mt-8">
               <div className="text-xl text-pink-600 font-bold mb-2 animate-pulse">Want to sell your own pizzas?</div>
-              <button onClick={()=>navigate('/createseller')} className="px-10 py-3 bg-gradient-to-r from-yellow-400 to-pink-400 text-white text-2xl font-extrabold rounded-full shadow-lg hover:scale-110 transition-transform duration-200 animate-bounce">
+              <button onClick={()=>navigate('/createseller')} className="px-10 py-3 bg-gradient-to-r cursor-pointer from-yellow-400 to-pink-400 text-white text-2xl font-extrabold rounded-full shadow-lg hover:scale-110 transition-transform duration-200 animate-bounce">
                 Become a Seller
               </button>
             </div>

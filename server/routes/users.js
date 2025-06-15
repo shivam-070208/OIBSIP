@@ -52,7 +52,7 @@ router.post('/login',async (req,res)=>{
         const option = getCookieOptions(req)
         console.log(option)
         res.cookie('token',token,option );
-      return  res.status(200).json({login:true});
+      return  res.status(200).json({login:true,user});
       }
       else{
         res.status(500).json({message:'Invalid Password'});
@@ -77,7 +77,7 @@ router.post('/signin', async (req, res) => {
       const usercreated = await Usermodel.create({ Email, Name, Password: hashedpswd });
       const token = jwt.sign(Email, process.env.JWT_SECRET);
       res.cookie('token', token, getCookieOptions(req));
-      res.status(200).json({ created: true });
+      res.status(200).json({ created: true,user:usercreated });
     }
   } catch (err) {
     res.status(400).json({ err: err.message });

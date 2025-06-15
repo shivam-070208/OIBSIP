@@ -49,7 +49,9 @@ router.post('/login',async (req,res)=>{
       if(result){
         res.clearCookie('token');
         const token = jwt.sign(Email,process.env.JWT_SECRET)
-        res.cookie('token',token, getCookieOptions(req));
+        const option = getCookieOptions(req)
+        console.log(otpions)
+        res.cookie('token',token,option );
       return  res.status(200).json({login:true});
       }
       else{

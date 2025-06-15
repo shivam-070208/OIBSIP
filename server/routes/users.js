@@ -99,7 +99,7 @@ router.post('/verify-otp', (req, res) => {
 router.post('/fetchuser',async (req,res)=>{
   console.log('request received')
   try{
-    const token = req.signedCookies;
+    const token = req.signedCookies.token;
     console.log(token)
     if(!token) return res.status(401).json({User:false})
     const Email = jwt.verify(token,process.env.JWT_SECRET);

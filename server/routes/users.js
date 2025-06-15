@@ -50,12 +50,12 @@ router.post('/login',async (req,res)=>{
         res.clearCookie('token');
         const token = jwt.sign(Email,process.env.JWT_SECRET)
         res.cookie('token',token, getCookieOptions(req));
-        res.status(200).json({login:true});
+      return  res.status(200).json({login:true});
       }
       else{
         res.status(500).json({message:'Invalid Password'});
       }
-      res.status(404).json({message:'No user exist'});
+    return   res.status(404).json({message:'No user exist'});
     }
   }catch(err){
     res.status(400).json({err:err.message})
@@ -124,6 +124,7 @@ const isLocalhost = (host) => host && (host.startsWith('localhost') || host.star
 function getCookieOptions(req) {
   const host = req.headers.origin || req.headers.host;
   if (isLocalhost(host)) {
+    console.log('hello')
     return {
       httpOnly: true,
       secure: false,

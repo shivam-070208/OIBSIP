@@ -49,11 +49,11 @@ router.post('/login',async (req,res)=>{
       if(result){
         res.clearCookie('token');
         const token = jwt.sign(Email,process.env.JWT_SECRET)
-        res.cookie('token',token, cookieOptions);
-      return  res.status(200).json({login:true,user:user});
+        res.cookie('token',token, getCookieOptions(req));
+        res.status(200).json({login:true});
       }
       else{
-       return res.status(500).json({message:'Invalid Password'});
+        res.status(500).json({message:'Invalid Password'});
       }
       res.status(404).json({message:'No user exist'});
     }
@@ -74,8 +74,8 @@ router.post('/signin', async (req, res) => {
       const hashedpswd = await bcrypt.hash(Password, salt);
       const usercreated = await Usermodel.create({ Email, Name, Password: hashedpswd });
       const token = jwt.sign(Email, process.env.JWT_SECRET);
-      res.cookie('token', token, cookieOptions);
-      res.status(200).json({ created: true,user:usercreated });
+      res.cookie('token', token, getCookieOptions(req));
+      res.status(200).json({ created: true });
     }
   } catch (err) {
     res.status(400).json({ err: err.message });
@@ -118,12 +118,26 @@ return res.status(200).json({datafecth});
 }
 })
 
-// Define cookieOptions for cross-site cookies
-const cookieOptions = {
-  httpOnly: true,
-  secure: true,    
-  sameSite: 'none',
-  maxAge: 1000 * 60 * 60*24*30  
-};
+// Dynamically set cookie options for dev and prod
+const isLocalhost = (host) => host && (host.startsWith('localhost') || host.startsWith('127.0.0.1'));
+
+function getCookieOptions(req) {
+  const host = req.headers.origin || req.headers.host;
+  if (isLocalhost(host)) {
+    return {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      maxAge: 24 * 60 * 60 * 1000*24 // 1 day (optional)
+    };
+  } else {
+    return {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      maxAge: 24 * 60 * 60 * 1000*24 // 1 day (optional)
+    };
+  }
+}
 
 module.exports = router;

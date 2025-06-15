@@ -20,7 +20,7 @@ const Sellerform = () => {
     setSuccess(false)
     try {
       const res = await axios.post(
-        `${host}/hostuser/create-to-seller`,
+        `${host}/host/create-to-seller`,
         { Organisation: organisation, Address: address },
         { withCredentials: true }
       )

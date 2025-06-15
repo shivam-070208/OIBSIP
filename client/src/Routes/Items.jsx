@@ -47,7 +47,7 @@ const Items = () => {
             </div>
           ))}
         </div>
-        <button className="px-10 py-3 bg-gradient-to-r from-yellow-400 to-pink-400 text-white text-2xl font-extrabold rounded-full shadow-lg hover:scale-110 transition-transform duration-200 animate-bounce">
+        <button className="px-10 py-3 bg-gradient-to-r from-yellow-400 to-pink-400 text-white text-2xl font-extrabold rounded-full shadow-lg hover:scale-110 fixed bottom-10 transition-transform duration-200 animate-bounce">
           Add Item
         </button>
       </div>

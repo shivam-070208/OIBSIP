@@ -57,8 +57,8 @@ router.post('/login',async (req,res)=>{
       else{
         res.status(500).json({message:'Invalid Password'});
       }
-    return   res.status(404).json({message:'No user exist'});
     }
+    return   res.status(404).json({message:'No user exist'}); 
   }catch(err){
     res.status(400).json({err:err.message})
   }
@@ -120,29 +120,26 @@ return res.status(200).json({datafecth});
 }
 })
 
-// Dynamically set cookie options for dev and prod
-const isLocalhost = (host) => host && (host.startsWith('localhost') || host.startsWith('127.0.0.1'));
-
 function getCookieOptions(req) {
-  const host = req.headers.origin || req.headers.host;
-  
-    console.log('hello')
+  const origin = req.headers.origin || '';
+  const isLocal = origin.includes('localhost') || origin.includes('127.0.0.1');
+
+  if (isLocal) {
+    return {
+      httpOnly: true,
+      secure: false, // ✅ no HTTPS on localhost
+      sameSite: 'Lax', // ✅ 'None' is invalid without secure
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+    };
+  } else {
     return {
       httpOnly: true,
       secure: true,
-      sameSite: 'none',
-      maxAge: 24 * 60 * 60 * 1000*24 // 1 day (optional)
-//     };
-//   } else {
-//     return {
-//       httpOnly: true,
-//       secure: true,
-//       sameSite: 'none',
-//       maxAge: 24 * 60 * 60 * 1000*24 // 1 day (optional)
-//     };
-//   }
-
-    }
+      sameSite: 'None',
+      maxAge: 24 * 60 * 60 * 1000,
+    };
   }
+}
+
 
 module.exports = router;

@@ -76,9 +76,9 @@ router.post('/signin', async (req, res) => {
       const hashedpswd = await bcrypt.hash(Password, salt);
       const usercreated = await Usermodel.create({ Email, Name, Password: hashedpswd });
       const token = jwt.sign(Email, process.env.JWT_SECRET);
-      res.cookie('token', token, getCookieOptions(req));
+    const send =   res.cookie('token', token, getCookieOptions(req));
       const cookie = req.cookies;
-      console.log(cookie)
+      console.log(cookie,send)
       res.status(200).json({ created: true,user:usercreated });
     }
   } catch (err) {

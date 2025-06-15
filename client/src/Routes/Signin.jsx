@@ -1,7 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { useContextValues } from '../Helpers/Contextprovider';
 
 const Signin = () => {
+  const suser = useContextValues().suser
+  const navigate = useNavigate()
   const [form, setForm] = useState({ Email: '', Name: '', Password: '' });
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [otpSent, setOtpSent] = useState(false);
@@ -97,6 +100,8 @@ const Signin = () => {
   
       if (res.ok && data.created) {
         setMessage('Registration successful!');
+        suser(data.user)
+        navigate('/')
       } else {
         setMessage(data.message||data.err || 'Registration failed.');
       }

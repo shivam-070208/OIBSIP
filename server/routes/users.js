@@ -121,8 +121,9 @@ return res.status(200).json({datafecth});
 // Define cookieOptions for cross-site cookies
 const cookieOptions = {
   httpOnly: true,
-  secure: true,      // required for cross-site cookies
-  sameSite: 'none'   // required for cross-site cookies
+  secure: true,    
+  sameSite: 'none',
+  maxAge: 1000 * 60 * 60*24*30  
 };
 
 module.exports = router;

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { useContextValues } from '../Helpers/Contextprovider';
 
 const Login = () => {
+   const suser = useContextValues().suser
+   const navigate = useNavigate()
   const [form, setForm] = useState({ Email: '', Password: '' });
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -25,7 +28,8 @@ const Login = () => {
           console.log(data)
       if (res.ok && data.login) {
         setMessage('Login successful!');
-        // Optionally redirect or update app state here
+        suser(data.user)
+        navigate('/')
       } else {
         setMessage(data.message || 'Login failed.');
       }

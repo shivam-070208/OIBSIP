@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route,Routes } from 'react-router-dom'
-import { Home, Deals, Pizzas, Drinks,Signin,Login } from './Routes'
+import { Home, Deals, Pizzas, Drinks,Signin,Login,Sellerform } from './Routes'
 import { Protectroute } from './Helpers'
 import User from './Routes/User'
 
@@ -31,6 +31,7 @@ const App = () => {
         />
         <Route path='/signup' element={<Signin/>} />
         <Route path='/login' element={< Login/>} />
+        <Route path='/createseller' element={<Sellerform />} />
       </Routes>
       <div className='w-screen h-screen fixed flex top-0 pointer-events-none z-[100]'>
         {Array(window.innerWidth < 500 ? 3 : 6).fill().map((_, i) => (

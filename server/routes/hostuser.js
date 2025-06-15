@@ -16,7 +16,7 @@ router.post('/create-to-seller',async (req,res)=>{
         const Email = jwt.verify(token,process.env.JWT_SECRET);
         const User = await Usermodel.findOneAndUpdate({Email},{role:'Seller',Organisation,Address});
         if(!User) return res.status(404).json({message:'Invalid User'});
-        res.status(200).json({Converted:true})
+        res.status(200).json({Converted:true,User})
     }catch(err){
          res.status(500).json({err:err.message});
     }

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useContextValues } from '../Helpers/Contextprovider'
 import { Navbar } from '../Components'
+import { useNavigate } from 'react-router'
 
 const User = () => {
   const [User, suser] = useState(null)
   const [navOptions, snavOptions] = useState([])
   const { user } = useContextValues()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (user) {
@@ -84,7 +86,7 @@ const User = () => {
           {User.role !== 'Seller' && (
             <div className="w-full flex flex-col items-center mt-8">
               <div className="text-xl text-pink-600 font-bold mb-2 animate-pulse">Want to sell your own pizzas?</div>
-              <button className="px-10 py-3 bg-gradient-to-r from-yellow-400 to-pink-400 text-white text-2xl font-extrabold rounded-full shadow-lg hover:scale-110 transition-transform duration-200 animate-bounce">
+              <button onClick={()=>navigate('/createseller')} className="px-10 py-3 bg-gradient-to-r from-yellow-400 to-pink-400 text-white text-2xl font-extrabold rounded-full shadow-lg hover:scale-110 transition-transform duration-200 animate-bounce">
                 Become a Seller
               </button>
             </div>

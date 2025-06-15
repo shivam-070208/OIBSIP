@@ -26,7 +26,7 @@ const User = () => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-black">
+    <div className="min-h-screen w-full bg-gradient-to-br from-yellow-100 via-pink-100 to-red-100 pb-16">
       <Navbar />
       {/* Secondary Navbar */}
       <div className="w-full flex justify-center bg-white/80 shadow-md py-3 sticky top-20 z-40">

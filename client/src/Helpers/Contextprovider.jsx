@@ -32,6 +32,7 @@ export const Contextprovider = ({children})=>{
      },[])      
      return(
         <Usercontext.Provider value={{user,suser,host}}>
+            {!children&&<>hello</>}
             {childrenshow&&children}
         </Usercontext.Provider>
      ) 

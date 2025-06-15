@@ -4,10 +4,10 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router'
 import { Contextprovider } from './Helpers/Contextprovider.jsx'
 createRoot(document.getElementById('root')).render(
+    <BrowserRouter>
   <Contextprovider>
 
-    <BrowserRouter>
     <App />
-  </BrowserRouter>
   </Contextprovider>
+  </BrowserRouter>
 )

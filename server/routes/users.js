@@ -76,9 +76,7 @@ router.post('/signin', async (req, res) => {
       const hashedpswd = await bcrypt.hash(Password, salt);
       const usercreated = await Usermodel.create({ Email, Name, Password: hashedpswd });
       const token = jwt.sign(Email, process.env.JWT_SECRET);
-    const send =   res.cookie('token', token, getCookieOptions(req));
-      const cookie = req.cookies;
-      console.log(cookie,send)
+  
       res.status(200).json({ created: true,user:usercreated });
     }
   } catch (err) {
@@ -101,7 +99,7 @@ router.post('/verify-otp', (req, res) => {
 router.post('/fetchuser',async (req,res)=>{
   console.log('request received')
   try{
-    const token = req.cookies.token;
+    const token = req.signedCookies;
     console.log(token)
     if(!token) return res.status(401).json({User:false})
     const Email = jwt.verify(token,process.env.JWT_SECRET);
@@ -135,7 +133,8 @@ function getCookieOptions(req) {
       httpOnly: true,
       secure: false, // ✅ no HTTPS on localhost
       sameSite: 'Lax', // ✅ 'None' is invalid without secure
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
+      maxAge: 24 * 60 * 60 * 1000, // 1 day,
+      path:'/'
     };
   } else {
     return {
@@ -143,6 +142,7 @@ function getCookieOptions(req) {
       secure: true,
       sameSite: 'none',
       maxAge: 24 * 60 * 60 * 1000,
+       path:'/'
     };
   }
 }

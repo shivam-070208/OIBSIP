@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router'
+import { Route,Routes } from 'react-router'
 import { Home, Deals, Pizzas, Drinks,Signin,Login } from './Routes'
 import { Protectroute } from './Helpers'
 import User from './Routes/User'

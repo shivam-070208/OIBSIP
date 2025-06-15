@@ -1,9 +1,9 @@
 import React from 'react'
 import gsap from 'gsap'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 
 const Brand = ({elm}) => {
-    
+    const navigate = useNavigate()
     const hover =()=>{
         gsap.set('.alpha',{
             top:0,
@@ -23,7 +23,7 @@ const Brand = ({elm}) => {
   return (
    
     <span onMouseEnter={hover} onClick={()=>{
-        window.location.pathname ='/'
+        navigate('/')
     }} className=" overflow-hidden h-fit perspective-[3000px] ">
         {elm.split('').map((e, i) => (
             <span

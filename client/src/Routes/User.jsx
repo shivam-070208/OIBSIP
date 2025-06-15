@@ -13,8 +13,8 @@ const User = () => {
     if (user) {
       suser(user)
       snavOptions([
-        { label: 'Orders', icon: '🧾' },
-        ...(user.role === 'Seller' ? [{ label: 'Your Items', icon: '🍕' }] : [])
+        { label: 'Orders', icon: '🧾',href:"/Orders" },
+        ...(user.role === 'Seller' ? [{ label: 'Your Items', icon: '🍕',href:"/Items" }] : [])
       ])
     }
   }, [user])
@@ -35,8 +35,8 @@ const User = () => {
         <div className="flex gap-6">
           {navOptions.map(opt => (
             <button
-              key={opt.label}
-              className="flex items-center gap-1 px-4 py-2 rounded-full font-bold text-md text-yellow-700 bg-yellow-100 hover:bg-yellow-300 shadow transition-all duration-200"
+              key={opt.label} onClick={()=> navigate(opt.href)}
+              className="flex cursor-pointer items-center gap-1 px-4 py-2 rounded-full font-bold text-md text-yellow-700 bg-yellow-100 hover:bg-yellow-300 shadow transition-all duration-200"
             >
               <span>{opt.icon}</span> {opt.label}
             </button>

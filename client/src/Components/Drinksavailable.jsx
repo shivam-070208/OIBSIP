@@ -5,8 +5,37 @@ import axios from 'axios'
 
 const Section = ({ title, drinks, color }) => {
   const navigate = useNavigate()
+  const { user, host } = useContextValues();
+  const [alert, setAlert] = useState('');
+  const handleAddToCart = async (drink) => {
+    if (!user) {
+      setAlert('Please login to add to cart!');
+      setTimeout(() => setAlert(''), 1500);
+      return;
+    }
+    try {
+      const res = await axios.post(`${host}/cart/addtocart`, {
+        userId: user._id,
+        ItemId: drink._id,
+        quantity: 1
+      });
+      if (res.status === 200) {
+        setAlert('Added to cart!');
+      } else {
+        setAlert('Failed to add to cart!');
+      }
+    } catch (err) {
+      setAlert('Error adding to cart!');
+    }
+    setTimeout(() => setAlert(''), 1500);
+  };
   return (
     <div className="mb-16 w-full">
+      {alert && (
+        <div style={{position:'fixed',top:'30px',right:'30px',zIndex:1000}} className="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg animate-bounce">
+          {alert}
+        </div>
+      )}
       <h2 className={`text-4xl font-extrabold mb-8 text-center tracking-widest uppercase ${color}`}>{title}</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center">
         {drinks.map((drink, i) => (
@@ -16,9 +45,12 @@ const Section = ({ title, drinks, color }) => {
             <p className="text-sm text-gray-700 mb-4 text-center line-clamp-2">{drink.Description}</p>
             <span className="text-xl font-extrabold text-red-500 mb-4">{drink.Price}</span>
             <span className="text-xl font-extrabold text-red-500 mb-2">{drink.Category}</span>
-            <button onClick={()=>{
-              navigate(`/Place?id=${drink._id}&seller=${btoa(JSON.stringify(drink.Seller))}&Price=${drink.Price}`)
-            }} className="px-6 py-2 bg-gradient-to-r from-yellow-400 to-red-400 text-white font-bold rounded-full shadow-lg hover:scale-110 transition-transform duration-200">Order Now</button>
+            <div className="flex gap-2">
+              <button onClick={()=>{
+                navigate(`/Place?id=${drink._id}&seller=${btoa(JSON.stringify(drink.Seller))}&Price=${drink.Price}`)
+              }} className="px-6 py-2 bg-gradient-to-r from-yellow-400 to-red-400 text-white font-bold rounded-full shadow-lg hover:scale-110 transition-transform duration-200">Order Now</button>
+              <button onClick={()=>handleAddToCart(drink)} className="px-6 py-2 bg-gradient-to-r from-green-400 to-blue-400 text-white font-bold rounded-full shadow-lg hover:scale-110 transition-transform duration-200">Add to Cart</button>
+            </div>
           </div>
         ))}
       </div>
@@ -54,7 +86,9 @@ const Drinksavailable = () => {
 
   // Group drinks by category
   const grouped = drinks.reduce((acc, drink) => {
+   
     acc[drink.Category] = acc[drink.Category] || []
+    
     acc[drink.Category].push(drink)
     return acc
   }, {})

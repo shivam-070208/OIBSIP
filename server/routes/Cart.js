@@ -2,20 +2,21 @@ const router = require('express').Router();
 const Cartmodel = require('../models/Cartmodel');
 const Itemmodel = require('../models/Itemmodel');
 
-router.post('/addtocart',async (req,res)=>{
-  const {userId, ItemId,quantity}= req.body;
-  try{
-    let cart = Cartmodel.findOne({userId});
-    if(!cart){
-      cart = new Cartmodel({userId, items: []});
+router.post('/addtocart', async (req, res) => {
+  const { userId, ItemId, quantity = 1 } = req.body;
+  try {
+    let cart = await Cartmodel.findOne({ userId });
+    if (!cart) {
+      cart = await Cartmodel.create({ userId, items: [] });
     }
-    cart.items.push({ItemId, quantity});
+   
+    cart.items.push({ ItemId, quantity });
     await cart.save();
-    return res.status(200).json({message:'Item added to cart successfully'});
-  } catch(err){  
-    return res.status(500).json({message:err.message})
-  } 
-})
+    return res.status(200).json({ message: 'Item added to cart successfully' });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+});
 
 router.post('/removefromcart',async (req,res)=>{
     const {userId, ItemId}= req.body;

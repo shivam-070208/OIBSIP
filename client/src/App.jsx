@@ -7,7 +7,9 @@ import {
   Drinks,
   Signin,
   Login,
-  Sellerform,Items,Additems,Placeorder
+  Sellerform,Items,Additems,Placeorder,
+  Cart,
+  OrderPlaced
 } from "./Routes";
 import { Protectroute } from "./Helpers";
 import User from "./Routes/User";
@@ -48,6 +50,14 @@ const App = () => {
           }
         />
          <Route
+          path="/cart"
+          element={
+            <Protectroute>
+              <Cart />
+            </Protectroute>
+          }
+        />
+         <Route
           path="/Items"
           element={
             <Protectroute Seller={true}>
@@ -60,6 +70,14 @@ const App = () => {
           element={
             <Protectroute >
               <Placeorder />
+            </Protectroute>
+          }
+        />
+          <Route
+          path="/orders"
+          element={
+            <Protectroute >
+              <OrderPlaced />
             </Protectroute>
           }
         />

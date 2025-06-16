@@ -13,8 +13,9 @@ const User = () => {
     if (user) {
       suser(user)
       snavOptions([
-        { label: 'Orders', icon: '🧾',href:"/Orders" },
-        ...(user.role === 'Seller' ? [{ label: 'Your Items', icon: '🍕',href:"/Items" }] : [])
+        { label: 'Orders', icon: '🧾', href: '/orders' },
+        { label: 'Cart', icon: '🛒', href: '/cart' },
+        ...(user.role === 'Seller' ? [{ label: 'Your Items', icon: '🍕', href: '/Items' }] : [])
       ])
     }
   }, [user])

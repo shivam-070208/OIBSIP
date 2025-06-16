@@ -24,7 +24,7 @@ router.post('/removefromcart',async (req,res)=>{
         let cart = await Cartmodel.findOne({userId});
         if(!cart) return res.status(404).json({message:'Cart not found'});
         
-        cart.items = cart.items.filter(item => item.ItemId.toString() !== pizzaId);
+        cart.items = cart.items.filter(item => item.ItemId.toString() !== ItemId);
         await cart.save();
         return res.status(200).json({message:'Pizza removed from cart successfully'});
     } catch(err){
@@ -54,11 +54,14 @@ router.post('/updatequantity',async (req,res)=>{
     try{
         let cart = await Cartmodel.findOne({userId});
         if(!cart) return res.status(404).json({message:'Cart not found'});
-        const itemIndex = cart.items.findIndex(item => item.pizzaId.toString() === ItemId.toString());
+        console.log(ItemId)
+        const itemIndex = cart.items.findIndex(item => {
+            return item.ItemId== ItemId});
         if(itemIndex === -1) return res.status(404).json({message:'Pizza not found in cart'});
         if(quantity <= 0) {
             cart.items.splice(itemIndex, 1);
         } else {
+          
             cart.items[itemIndex].quantity = quantity;
         }
         await cart.save();

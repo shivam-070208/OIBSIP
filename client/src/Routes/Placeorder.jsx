@@ -40,6 +40,9 @@ const Placeorder = () => {
             navigate('/')
          }
         }
+        else{
+            alert('online payment is under maintainace')
+        }
     }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-50 via-pink-50 to-red-100">

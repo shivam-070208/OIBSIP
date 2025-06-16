@@ -8,7 +8,9 @@ import Sellerform from './Sellerform'
 import Items from './Items'
 import Additems from './Additems'
 import Placeorder from './Placeorder'
+import Cart from './Cart'
+import OrderPlaced from './OrderPlaced'
 export {
 Home,
-Deals,Pizzas,Drinks,Signin,Login,Sellerform,Items,Additems,Placeorder
+Deals,Pizzas,Drinks,Signin,Login,Sellerform,Items,Additems,Placeorder,Cart,OrderPlaced
 }

@@ -14,7 +14,11 @@ router.post('/create-to-seller',async (req,res)=>{
         const token = req.cookies.token;
         
         const Email = jwt.verify(token,process.env.JWT_SECRET);
-        const User = await Usermodel.findOneAndUpdate({Email},{role:'Seller',Organisation,Address});
+        const User = await Usermodel.findOneAndUpdate(
+            { Email },
+            { role: 'Seller', Organisation, Address },
+            { new: true }
+        );
         if(!User) return res.status(404).json({message:'Invalid User'});
         res.status(200).json({Converted:true,User})
     }catch(err){
@@ -22,31 +26,47 @@ router.post('/create-to-seller',async (req,res)=>{
     }
 })
 
-router.post('/additem',async (req,res)=>{
-    const {Category,Name,Price,Seller,Organisation,Description,Itemtype} = req.body
-    const Itemcheck = await Itemmodel.findOne({Seller,Name,Itemtype});
-    if(Itemcheck) return res.status(400).json({message:'Pizza already exists'});
-    try{
-          upload.single('Image')(req, res, function (err) {
-             if (err) {
-      
-             return res.status(400).json({ message: err.message });
-             }
-        const result =  uploader.upload_stream({folder:'pizza_items'},async(err,result)=>{
-            const Item = await Itemmodel.create({
-                Category,Name,Price,Image:result.secure_url,Seller,Organisation,Description,Itemtype
-            })   
-            return res.status(200).json(Item) 
-        })
-        console.log(req.file)
-        result.end(req.file.buffer)
-    })
-    }catch(err){
-       
-        return res.status(400).json({message:err.message})
-    }
+router.post('/additem', upload.single('Image'), async (req, res) => {
+  const { Category, Name, Price, Seller, Organisation, Description, ItemType } = req.body;
 
-})
+  // Check if item exists
+  console.log(ItemType)
+  const Itemcheck = await Itemmodel.findOne({ Seller, Name, ItemType });
+  if (Itemcheck) return res.status(400).json({ message: 'Pizza already exists' });
+
+  if (!req.file) {
+    return res.status(400).json({ message: 'No image file provided' });
+  }
+
+  try {
+    const streamUpload = (fileBuffer) => {
+      return new Promise((resolve, reject) => {
+        const stream = uploader.upload_stream({ folder: 'pizza_items' }, (err, result) => {
+          if (err) return reject(err);
+          resolve(result);
+        });
+        stream.end(fileBuffer);
+      });
+    };
+
+    const result = await streamUpload(req.file.buffer);
+
+    const newItem = await Itemmodel.create({
+      Category,
+      Name,
+      Price,
+      Image: result.secure_url,
+      Seller,
+      Organisation,
+      Description,
+      ItemType
+    });
+
+    return res.status(200).json(newItem);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+});
 
 router.delete('/removeItem',async (req,res)=>{
     const {ItemId} = req.body;

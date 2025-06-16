@@ -118,7 +118,7 @@ router.post('/fetchitem',async (req,res)=>{
   const {type} = req.query
 try{
   const datafecth = await Itemmodel.find({ItemType:type});
-return res.status(200).json({datafecth});
+return res.status(200).json(datafecth);
 
 }catch(err){
   res.status(400).json({message:err.message});
@@ -133,7 +133,7 @@ function getCookieOptions(req) {
     return {
       httpOnly: true,
       secure: false,
-      sameSite: 'Lax', // ✅ 'None' is invalid without secure
+      sameSite: 'lax', // ✅ 'None' is invalid without secure
       maxAge: 24 * 60 * 60 * 1000, // 1 day,
       path:'/'
     };

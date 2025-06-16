@@ -21,6 +21,7 @@ const Item = new mongoose.Schema({
     Seller:{
         type:String
     },
+
     Description:{
         type:String
     },

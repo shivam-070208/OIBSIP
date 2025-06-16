@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const dotenv = require('dotenv');
+dotenv.config()
 const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -25,10 +27,11 @@ const Ordermodel = require('../models/Ordermodel');
 const Itemmodel = require('../models/Itemmodel');
 
 router.post('/placeorder', async (req, res) => {
-  const { userId, items, totalAmount } = req.body;
+  console.log(req.body)
+  const { userId, items, totalAmount,Address } = req.body;
   try {
      mailtoHost(items);
-    const order = new Ordermodel({ userId, items, totalAmount });
+    const order = new Ordermodel({ userId, items, totalAmount,Address });
     await order.save();
     return res.status(200).json({ placed: true });
   } catch (err) {

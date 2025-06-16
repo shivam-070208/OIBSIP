@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import Dealavailable from "./Dealavailable";
 import Pizzasavailable from "./Pizzasavailable";
 import Drinksavailable from "./Drinksavailable";
+
 export {
     Heroic,Navbar,Menu,Featured,Testimonials,Footer,Dealavailable,Pizzasavailable,Drinksavailable
 }

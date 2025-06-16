@@ -7,7 +7,7 @@ import {
   Drinks,
   Signin,
   Login,
-  Sellerform,Items
+  Sellerform,Items,Additems,Placeorder
 } from "./Routes";
 import { Protectroute } from "./Helpers";
 import User from "./Routes/User";
@@ -50,12 +50,30 @@ const App = () => {
          <Route
           path="/Items"
           element={
-            <Protectroute>
+            <Protectroute Seller={true}>
               <Items />
             </Protectroute>
           }
         />
+         <Route
+          path="/Place"
+          element={
+            <Protectroute >
+              <Placeorder />
+            </Protectroute>
+          }
+        />
+         <Route
+          path="/addItem"
+          element={
+            <Protectroute Seller={true}>
+              <Additems />
+            </Protectroute>
+          }
+        />
+      
       </Routes>
+
       <div className="w-screen h-screen fixed flex top-0 pointer-events-none z-[100]">
         {Array(window.innerWidth < 500 ? 3 : 6)
           .fill()

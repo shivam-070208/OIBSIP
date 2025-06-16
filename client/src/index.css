@@ -21,18 +21,23 @@ body,html{
 /* Custom scrollbar styling */
 body::-webkit-scrollbar {
   width: 14px;
-  background: transparent;
+  background: rgba(255, 192, 203, 0);
 }
 
-body::-webkit-scrollbar-track {
-  background: transparent;
+::-webkit-scrollbar-track-piece{
+   background: rgba(181, 69, 88, 0);
 }
-
+::-webkit-scrollbar-track{
+ background: rgba(181, 69, 88, 0); 
+}
 body::-webkit-scrollbar-thumb {
   background: linear-gradient(135deg, #7fff00 0%, #32cd32 100%);
   border-radius: 8px;
   border: 2px solid #f0fff0;
+  min-height: 30px;
 }
+
+
 .sides::after{
 width: 1000px;
 height: 100px;
@@ -46,3 +51,4 @@ top: 400px;
 .carcollection::-webkit-scrollbar{
 display: none;
 }
+

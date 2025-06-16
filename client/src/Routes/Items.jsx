@@ -54,18 +54,18 @@ const Items = () => {
                 className="bg-white/95 rounded-3xl shadow-2xl md:p-8 p-6 flex flex-col items-center border-4 border-yellow-200 w-full hover:scale-105 transition-transform duration-300 hover:shadow-yellow-200/60"
               >
                 <img
-                  src={item.image}
-                  alt={item.name}
+                  src={item.Image}
+                  alt={item.Name}
                   className="w-36 h-36 object-cover rounded-xl mb-4 border-2 border-pink-200 shadow-lg"
                 />
                 <h3 className="text-2xl font-bold text-yellow-700 mb-1 text-center">
-                  {item.name}
+                  {item.Name}
                 </h3>
                 <div className="text-lg text-pink-600 font-semibold mb-1">
-                  {item.category}
+                  {item.Category}
                 </div>
                 <div className="text-xl font-extrabold text-green-600 mb-2">
-                  ₹{item.price}
+                  ₹{item.Price}
                 </div>
               </div>
             ))}

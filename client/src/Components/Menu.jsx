@@ -6,7 +6,7 @@ const Menu = () => {
       <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-pink-500 animate-pulse drop-shadow-lg mb-10 tracking-widest uppercase">Pizza Craze Menu</h1>
       <div className="absolute -top-20 -left-20 w-96 h-96 bg-[url('/heroic/veggie.png')] bg-contain bg-no-repeat opacity-20 rotate-12 animate-spin-slow"></div>
       <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[url('/heroic/italian.png')] bg-contain bg-no-repeat opacity-20 -rotate-12 animate-spin-slow-reverse"></div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 z-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 z-10">
         {/* Veggie */}
         <div className="bg-white/90 rounded-3xl shadow-2xl p-10 flex flex-col items-center hover:scale-105 transition-transform duration-300 border-4 border-yellow-400 w-96 h-[32rem] justify-between">
           <img src="/heroic/veggie.png" alt="Veggie Pizza" className="w-52 h-52 object-contain drop-shadow-xl animate-bounce mb-4" />

@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var hostRouter = require('./routes/hostuser')
 const cartRoute = require('./routes/Cart')
+const orderSellerRouter = require('./routes/orderseller');
 
 var app = express();
 const connectDB = require('./config/Connectdb')
@@ -37,7 +38,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/host',hostRouter)
 app.use('/cart',cartRoute)
-
+app.use('/orderseller', orderSellerRouter);
 
 
 module.exports = app;

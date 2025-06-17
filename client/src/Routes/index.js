@@ -10,7 +10,8 @@ import Additems from './Additems'
 import Placeorder from './Placeorder'
 import Cart from './Cart'
 import OrderPlaced from './OrderPlaced'
+import Dashboard from './Dashboard'
 export {
 Home,
-Deals,Pizzas,Drinks,Signin,Login,Sellerform,Items,Additems,Placeorder,Cart,OrderPlaced
+Deals,Pizzas,Drinks,Signin,Login,Sellerform,Items,Additems,Placeorder,Cart,OrderPlaced,Dashboard
 }

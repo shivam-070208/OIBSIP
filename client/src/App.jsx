@@ -9,10 +9,11 @@ import {
   Login,
   Sellerform,Items,Additems,Placeorder,
   Cart,
-  OrderPlaced
+  OrderPlaced,Dashboard
 } from "./Routes";
 import { Protectroute } from "./Helpers";
 import User from "./Routes/User";
+
 
 const App = () => {
   const loaderColors = [
@@ -36,6 +37,14 @@ const App = () => {
           element={
             <Protectroute>
               <User />
+            </Protectroute>
+          }
+        />
+         <Route
+          path="/Dashboard"
+          element={
+            <Protectroute>
+              <Dashboard />
             </Protectroute>
           }
         />

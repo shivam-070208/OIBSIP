@@ -77,7 +77,7 @@ const User = () => {
               <div className="text-lg text-gray-700 mb-2 text-center">
                 <span className="font-semibold">Address:</span> {User.Address || <span className="italic text-gray-400">N/A</span>}
               </div>
-              <div className="mt-6 px-8 py-3 bg-gradient-to-r cursor-pointer from-green-400 to-yellow-400 text-white text-xl font-bold rounded-full shadow-lg  animate-bounce-slow">
+              <div onClick={()=>navigate('/Dashboard')} className="mt-6 px-8 py-3 bg-gradient-to-r cursor-pointer from-green-400 to-yellow-400 text-white text-xl font-bold rounded-full shadow-lg  animate-bounce-slow">
                 Seller Dashboard
               </div>
             </>

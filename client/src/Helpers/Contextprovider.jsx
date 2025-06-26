@@ -11,7 +11,7 @@ export const Contextprovider = ({children})=>{
   
     const [user,suser]=useState(null)
     const [childrenshow,schildren]=useState(false)
-    const host="https://pizzasellingweb-8psa.vercel.app"
+    const host="https://pizzasellingweb.onrender.com"
     const fetchUser=async ()=>{
        
 

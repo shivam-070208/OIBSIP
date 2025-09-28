@@ -22,8 +22,8 @@ const transporter = nodemailer.createTransport({
 
 let users={};
 router.post('/genotp', async (req, res) => {
-  const { Email } = req.body;
   try {
+  const { Email } = req.body;
     const otp = generateOTP();
     await transporter.sendMail({
       from: 'papajohns@org.in',

@@ -21,6 +21,31 @@ const transporter = nodemailer.createTransport({
 });
 
 let users={};
+
+// Forgot Password - send OTP to email
+router.post('/forgot-password', async (req, res) => {
+  try {
+    const { Email } = req.body;
+    const user = await Usermodel.findOne({ Email });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    users[Email] = otp;
+
+    await transporter.sendMail({
+      from: 'papajohns@org.in',
+      to: Email,
+      subject: 'Password Reset OTP',
+      text: `Your password reset OTP is: ${otp}`,
+    });
+
+    setTimeout(() => delete users[Email], 60000 * 10);
+    res.status(200).json({ message: 'OTP sent to email' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 router.post('/genotp', async (req, res) => {
   try {
   const { Email } = req.body;
@@ -88,12 +113,36 @@ router.post('/signin', async (req, res) => {
 router.post('/verify-otp', (req, res) => {
   const { Email, otp } = req.body;
   const user = users[Email];
- 
+  
   if (user && user == otp) {
     delete user.otp;
     return res.json({ verified:true });
   }
   res.status(400).json({ message: 'Invalid OTP' });
+});
+
+// Reset Password - verify OTP and update password
+router.post('/reset-password', async (req, res) => {
+  try {
+    const { Email, otp, newPassword } = req.body;
+    const userOtp = users[Email];
+    
+    if (!userOtp || userOtp != otp) {
+      return res.status(400).json({ message: 'Invalid or expired OTP' });
+    }
+
+    const user = await Usermodel.findOne({ Email });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const salt = await bcrypt.genSalt(10);
+    user.Password = await bcrypt.hash(newPassword, salt);
+    await user.save();
+
+    delete users[Email];
+    res.status(200).json({ message: 'Password reset successful' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
 router.post('/fetchuser',async (req,res)=>{

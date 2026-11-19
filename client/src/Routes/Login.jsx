@@ -59,6 +59,10 @@ const Login = () => {
           <span className="text-gray-700">Don't have an account? </span>
           <Link to="/signup" className="text-red-600 font-bold hover:underline">Sign Up</Link>
         </div>
+        <div className="mt-3">
+          <span className="text-gray-700">Forgot your password? </span>
+          <Link to="/forgot-password" className="text-red-600 font-bold hover:underline">Reset Password</Link>
+        </div>
         {message && <p className={`mt-3 font-semibold ${message.includes('success') ? 'text-green-600' : 'text-red-600'}`}>{message}</p>}
       </div>
     </div>

@@ -11,7 +11,7 @@ export const Contextprovider = ({children})=>{
   
     const [user,suser]=useState(null)
     const [childrenshow,schildren]=useState(false)
-    const host="https://pizzasellingweb.onrender.com"
+    const host=import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
     const fetchUser=async ()=>{
        
 

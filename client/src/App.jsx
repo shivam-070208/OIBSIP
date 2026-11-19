@@ -7,6 +7,8 @@ import {
   Drinks,
   Signin,
   Login,
+  Forgotpassword,
+  Resetpassword,
   Sellerform,Items,Additems,Placeorder,
   Cart,
   OrderPlaced,Dashboard
@@ -28,6 +30,8 @@ const App = () => {
   return (
     <div className="select-none">
       <Routes>
+        <Route path="/forgot-password" element={<Forgotpassword />} />
+        <Route path="/reset-password" element={<Resetpassword />} />
         <Route path="/" element={<Home />} />
         <Route path="/deals" element={<Deals />} />
         <Route path="/pizzas" element={<Pizzas />} />

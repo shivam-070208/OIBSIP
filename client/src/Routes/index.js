@@ -11,7 +11,9 @@ import Placeorder from './Placeorder'
 import Cart from './Cart'
 import OrderPlaced from './OrderPlaced'
 import Dashboard from './Dashboard'
+import Forgotpassword from './Forgotpassword'
+import Resetpassword from './Resetpassword'
 export {
 Home,
-Deals,Pizzas,Drinks,Signin,Login,Sellerform,Items,Additems,Placeorder,Cart,OrderPlaced,Dashboard
+Deals,Pizzas,Drinks,Signin,Login,Sellerform,Items,Additems,Placeorder,Cart,OrderPlaced,Dashboard,Forgotpassword,Resetpassword
 }

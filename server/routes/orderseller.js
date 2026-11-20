@@ -21,4 +21,26 @@ router.post('/fetch-orders-received', async (req, res) => {
   }
 });
 
+// Update order status (KDS: Preparing → Packed → Out for Delivery → Completed)
+router.post('/update-order-status', async (req, res) => {
+  try {
+    const { orderid, status } = req.body;
+    const validStatuses = ['Pending', 'Preparing', 'Packed', 'Out for Delivery', 'Completed', 'Cancelled'];
+    // Trim and normalize the status value
+    const normalizedStatus = status ? status.trim() : '';
+    if (!validStatuses.includes(normalizedStatus)) {
+      return res.status(400).json({ message: `Invalid status: "${normalizedStatus}". Valid statuses: ${validStatuses.join(', ')}` });
+    }
+    const order = await Ordermodel.findByIdAndUpdate(
+      orderid,
+      { status: normalizedStatus },
+      { new: true }
+    );
+    if (!order) return res.status(404).json({ message: 'Order not found' });
+    return res.status(200).json({ update: true, order });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+});
+
 module.exports = router;

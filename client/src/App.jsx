@@ -9,6 +9,7 @@ import {
   Login,
   Forgotpassword,
   Resetpassword,
+  KDS,
   Sellerform,Items,Additems,Placeorder,
   Cart,
   OrderPlaced,Dashboard
@@ -78,6 +79,11 @@ const App = () => {
             </Protectroute>
           }
         />
+        <Route path="/kds" element={
+          <Protectroute Seller={true}>
+            <KDS />
+          </Protectroute>
+        } />
          <Route
           path="/Place"
           element={

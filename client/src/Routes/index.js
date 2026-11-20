@@ -13,7 +13,8 @@ import OrderPlaced from './OrderPlaced'
 import Dashboard from './Dashboard'
 import Forgotpassword from './Forgotpassword'
 import Resetpassword from './Resetpassword'
+import KDS from './KDS'
 export {
 Home,
-Deals,Pizzas,Drinks,Signin,Login,Sellerform,Items,Additems,Placeorder,Cart,OrderPlaced,Dashboard,Forgotpassword,Resetpassword
+Deals,Pizzas,Drinks,Signin,Login,Sellerform,Items,Additems,Placeorder,Cart,OrderPlaced,Dashboard,Forgotpassword,Resetpassword,KDS
 }

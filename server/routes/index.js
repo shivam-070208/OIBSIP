@@ -31,7 +31,13 @@ router.post('/placeorder', async (req, res) => {
   const { userId, items, totalAmount,Address } = req.body;
   try {
      mailtoHost(items);
-    const order = new Ordermodel({ userId, items, totalAmount,Address });
+    // Set items.Seller from the first item's seller, or user's role
+    const order = new Ordermodel({ 
+      userId, 
+      items: items.map(item => ({ ...item, Seller: userId })), 
+      totalAmount, 
+      Address 
+    });
     await order.save();
     return res.status(200).json({ placed: true });
   } catch (err) {
